@@ -32,10 +32,11 @@ SN:
     if (scanf("%d", &cantidad) != 1 || cantidad < 1)
     {
         printf("\nError\nDebe ingresar numeros positivos.\n");
-        while (getchar() != '\n'); 
+        while (getchar() != '\n')
+            ;
         goto SN;
     }
-    while (getchar() != '\n'); 
+    while (getchar() != '\n');
 
     struct Productos producto[cantidad];
 
@@ -54,20 +55,36 @@ SN:
         printf("Ingrese el precio del producto %d: ", i + 1);
         scanf("%f", &producto[i].precio);
 
-        printf("Ingrese la fecha de Elaboracion del producto %d: ", i + 1);
-        printf("\nDia: ");
-        scanf("%d", &producto[i].elaboracion.dia);
-        printf("Mes: ");
-        scanf("%d", &producto[i].elaboracion.mes);
-        printf("Anio: ");
+        printf("Ingrese la fecha de elaboración del producto %d: \n", i + 1);
+        do
+        {
+            printf("Día: ");
+            scanf("%d", &producto[i].elaboracion.dia);
+        } while (producto[i].elaboracion.dia < 1 || producto[i].elaboracion.dia > 31);
+
+        do
+        {
+            printf("Mes: ");
+            scanf("%d", &producto[i].elaboracion.mes);
+        } while (producto[i].elaboracion.mes < 1 || producto[i].elaboracion.mes > 12);
+
+        printf("Año: ");
         scanf("%d", &producto[i].elaboracion.anio);
 
-        printf("Ingrese la fecha de vencimiento del producto %d: ", i + 1);
-        printf("\nDia: ");
-        scanf("%d", &producto[i].vencimiento.dia);
-        printf("Mes: ");
-        scanf("%d", &producto[i].vencimiento.mes);
-        printf("Anio: ");
+        printf("Ingrese la fecha de vencimiento del producto %d: \n", i + 1);
+        do
+        {
+            printf("Día: ");
+            scanf("%d", &producto[i].vencimiento.dia);
+        } while (producto[i].vencimiento.dia < 1 || producto[i].vencimiento.dia > 31);
+
+        do
+        {
+            printf("Mes: ");
+            scanf("%d", &producto[i].vencimiento.mes);
+        } while (producto[i].vencimiento.mes < 1 || producto[i].vencimiento.mes > 12);
+
+        printf("Año: ");
         scanf("%d", &producto[i].vencimiento.anio);
 
         while (getchar() != '\n');
@@ -81,9 +98,9 @@ SN:
         printf("El codigo del producto %d: %d", i + 1, producto[i].codigo);
         printf("\nLa cantidad del producto %d: %d", i + 1, producto[i].cantidad);
         printf("\nEl precio del producto %d: %.2f", i + 1, producto[i].precio);
-        printf("\nLa fecha de elaboracion del producto %d: %02d/%02d/%04d", 
+        printf("\nLa fecha de elaboracion del producto %d: %02d/%02d/%02d",
                i + 1, producto[i].elaboracion.dia, producto[i].elaboracion.mes, producto[i].elaboracion.anio);
-        printf("\nLa fecha de vencimiento del producto %d: %02d/%02d/%04d", 
+        printf("\nLa fecha de vencimiento del producto %d: %02d/%02d/%02d",
                i + 1, producto[i].vencimiento.dia, producto[i].vencimiento.mes, producto[i].vencimiento.anio);
         printf("\n=======================================\n\n");
     }
