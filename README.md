@@ -1,6 +1,6 @@
 # Ejercicios De Estructuras en C
 
-Este repositorio contiene ejercicios prácticos que me ayudan aprender a trabajar con **estructuras** en el lenguaje de programación C. Los ejercicios están diseñados para introducir gradualmente conceptos desde lo básico hasta el uso avanzado de estructuras.
+Este repositorio contiene ejercicios prácticos que me ayuda aprender **estructuras** en el lenguaje de programación C. Los ejercicios están diseñados para introducir gradualmente conceptos desde lo básico hasta el uso avanzado de estructuras.
 
 ---
 
