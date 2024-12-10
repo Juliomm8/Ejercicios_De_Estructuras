@@ -18,7 +18,8 @@ struct Productos
     float total;
 };
 
-int main(){
+int main()
+{
     int tama;
     float porcentajeIVA;
 
@@ -31,37 +32,43 @@ int main(){
     scanf("%f", &porcentajeIVA);
     getchar();
 
-    for (int i = 0; tama > i; i++){
-        printf("\nIngrese la descripcion %d: ", i+1);
+    for (int i = 0; tama > i; i++)
+    {
+        printf("\nIngrese la descripcion %d: ", i + 1);
         fgets(producto[i].descripcion, sizeof producto[i].descripcion, stdin);
         fflush(stdin);
 
-        printf("Ingrese la cantidad %d: ", i+1);
+        printf("Ingrese la cantidad %d: ", i + 1);
         scanf("%d", &producto[i].cantidad);
 
-        printf("Ingrese el valor unitario %d: ", i+1);
+        printf("Ingrese el valor unitario %d: ", i + 1);
         scanf("%f", &producto[i].precioUnitario);
-
 
         producto[i].valorVenta = producto[i].cantidad * producto[i].precioUnitario;
 
         producto[i].IVA = porcentajeIVA;
-        producto[i].montoIVA = producto[i].valorVenta * (producto[i].IVA/100);
+        producto[i].montoIVA = producto[i].valorVenta * (producto[i].IVA / 100);
         producto[i].total = producto[i].valorVenta + producto[i].montoIVA;
         fflush(stdin);
     }
 
-    printf("------------Productos Ingresados------------------\n");
-        for (int i = 0; tama > i; i++){
-        printf("Descriopcion %d: %s\n", i + 1, producto[i].descripcion);
-        printf("Cantidad: %d\n", producto[i].cantidad);
-        printf("Precio Unitario: %.2f\n", producto[i].precioUnitario);
-        printf("IVA %.2f%%: %.2f\n", producto[i].IVA, producto[i].montoIVA);
-        printf("Total: %f\n", producto[i].total);
-    }
-    printf("-------------------------------------------------");
+    printf("------------------------------------------------------------\n");
+    printf("| %-3s | %-15s | %-8s | %-8s | %-8s | %-8s |\n",
+           "No.", "Descripción", "Cantidad", "P. Unit.", "IVA", "Total");
+    printf("------------------------------------------------------------\n");
 
+    for (int i = 0; i < tama; i++)
+    {
+        printf("| %-3d | %-15s | %-8d | %-8.2f | %-8.2f | %-8.2f |\n",
+               i + 1,
+               producto[i].descripcion,
+               producto[i].cantidad,
+               producto[i].precioUnitario,
+               producto[i].montoIVA,
+               producto[i].total);
+    }
+
+    printf("------------------------------------------------------------\n");
 
     return 0;
 }
-
