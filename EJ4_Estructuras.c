@@ -14,7 +14,6 @@ struct Productos
     int cantidad;          // Cantidad del producto
     float precioUnitario;  // Precio unitario del producto
     float valorVenta;      // Precio sin IVA (cantidad * precio unitario)
-    float subTotal;        // Subtotal (no se utiliza en este programa)
     float IVA;             // Porcentaje de IVA aplicado
     float montoIVA;        // Monto del IVA (valorVenta * IVA / 100)
     float total;           // Total con IVA incluido
@@ -22,8 +21,8 @@ struct Productos
 
 int main()
 {
-    int tama;                // Número de productos a ingresar
-    float porcentajeIVA;     // Porcentaje de IVA ingresado por el usuario
+    int tama;            // Número de productos a ingresar
+    float porcentajeIVA; // Porcentaje de IVA ingresado por el usuario
 
     // Solicitar la cantidad de productos a ingresar
     printf("Cuantos productos quiere ingresar: ");
@@ -43,16 +42,23 @@ int main()
         fgets(producto[i].descripcion, sizeof(producto[i].descripcion), stdin);
         producto[i].descripcion[strcspn(producto[i].descripcion, "\n")] = '\0';
 
-        printf("Ingrese la cantidad %d: ", i + 1);
-        scanf("%d", &producto[i].cantidad);
+        do
+        {
+            printf("Ingrese la cantidad %d: ", i + 1);
+            scanf("%d", &producto[i].cantidad);
+        } while (producto[i].cantidad < 0);
 
-        printf("Ingrese el valor unitario %d: ", i + 1);
-        scanf("%f", &producto[i].precioUnitario);
+        do
+        {
+            printf("Ingrese el valor unitario %d: ", i + 1);
+            scanf("%f", &producto[i].precioUnitario);
+        } while (producto[i].precioUnitario < 0);
+
         getchar();
 
         producto[i].valorVenta = producto[i].cantidad * producto[i].precioUnitario; // Sin IVA
         producto[i].montoIVA = producto[i].valorVenta * (porcentajeIVA / 100);      // IVA
-        producto[i].total = producto[i].valorVenta + producto[i].montoIVA;          // Total con IVA    
+        producto[i].total = producto[i].valorVenta + producto[i].montoIVA;          // Total con IVA
     }
 
     // Mostrar los datos como una factura
@@ -60,7 +66,7 @@ int main()
     printf("| %-3s | %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |\n",
            "No.", "Descripción", "Cantidad", "P. Unit.", "Sin IVA", "IVA", "Total");
     printf("-----------------------------------------------------------------------------------------------------------\n");
-    
+
     for (int i = 0; i < tama; i++)
     {
         printf("| %-3d | %-25s | %-10d | %-10.2f | %-10.2f | %-10.2f | %-10.2f |\n",
